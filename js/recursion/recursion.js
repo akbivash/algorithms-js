@@ -46,20 +46,28 @@ let func3 = sum(6);
 console.log(func3);
 
 //-------------binary search ----------------
-function binary(arr, num, low = 0, high) {
-  high = arr.length - 1;
-  if (low > high) return -1;
-  if (high >= low) {
+function binary(arr, num, low, high) {
+
+    if (low > high) return -1;
     let mid = Math.floor((high + low) / 2);
-    if (arr[mid] > num) {
-      return binary(arr, num, low, mid - 1);
-    } else if (arr[mid] < num) {
-      return binary(arr, num, mid + 1, high);
-    } else if (arr[mid] === num) {
-      return mid;
+    if (arr[mid] === num) {
+        return mid;
     }
-  }
+    if (arr[mid] > num) {
+        return binary(arr, num, low, mid - 1);
+    } else if (arr[mid] < num) {
+        return binary(arr, num, mid + 1, high);
+    }
 }
+
+let arr = [2, 5, 8, 9, 16, 35]
+let target = 16
+let r = binary(arr, target, 0, arr.length - 1)
+console.log(r)
+
+
+
+
 
 let sorted = binary([2, 3, 4, 9, 22], 212);
 console.log(sorted); // Output: 3
